@@ -2,20 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:gravity="center_horizontal">
-
-
-
 	<TextView android:id="@+id/textView" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="@string/hello"
-		android:background="#f2f2f2" android:textColor="#333333"  android:padding="5dip" />
-
+		android:background="#f2f2f2" android:textColor="#333333"
+		android:padding="5dip" android:autoLink="web" />
 	<ImageView android:id="@+id/ImageView01"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:src="@drawable/hukidasi" />
 	<ImageView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/iconView_main"
 		android:src="@drawable/icon" />
-
-
-
 </LinearLayout>

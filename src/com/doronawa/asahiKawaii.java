@@ -36,18 +36,13 @@ public class asahiKawaii extends Activity {
 			}
 
 			/*最新postを切り出す*/
-			String str = "";
-			StringBuffer strBuf = new StringBuffer();
-			while(stream.ready() && (str = stream.readLine()).indexOf("</item>") == -1){
-				strBuf.append(decode(str));
-			}
-
+			StringBuffer strBuf = pickupNewPost(stream);
 			String strSrc = strBuf.toString();
 
 			/*必要部分のテキストのみを切り出す*/
-			String body = pickUpString(strSrc, "title");
-			String pubDate= pickUpString(strSrc, "pubDate");
-			String guid = pickUpString(strSrc, "guid");
+			String body = pickUpString(strSrc, "title");		//タイトル部分
+			String pubDate= pickUpString(strSrc, "pubDate");	//投稿日時
+			String guid = pickUpString(strSrc, "guid");			//呟きの個別URL
 
 			/*実際の表示*/
 			TextView tv = (TextView) findViewById(R.id.textView);
@@ -58,6 +53,22 @@ public class asahiKawaii extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 最新postを切り出す
+	 * @param stream
+	 * @return
+	 * @throws IOException
+	 */
+	private StringBuffer pickupNewPost(BufferedReader stream)
+			throws IOException {
+		String str = "";
+		StringBuffer strBuf = new StringBuffer();
+		while(stream.ready() && (str = stream.readLine()).indexOf("</item>") == -1){
+			strBuf.append(decode(str));
+		}
+		return strBuf;
 	}
 
 	private String pickUpString(String src, String tag){
